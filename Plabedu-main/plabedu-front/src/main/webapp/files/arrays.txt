@@ -1,0 +1,17 @@
+{
+  "data": [
+    {
+      "data_adjudicacio": "09-04-2021 00:00",
+      "llocs_treball": "07000832 - IES JOSEP MARIA QUADRADO (CIUTADELLA DE MENORCA)",
+      "convocatoria": "388",
+      "funcions": "0590004 - LLENGUA CASTELLANA I LITERATURA ",
+      "tipus": "Substitució",
+      "mitja_jornada": "No",
+      "itinerant": "No",
+      "data_inici": "12-04-2021",
+      "data_finalitzacio_prevista": "30-06-2021",
+      "data_peticio_director": "-",
+      "motiu": "EXCEDÈNCIES"
+    }
+  ]
+}

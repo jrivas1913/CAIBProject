@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
+
+	<ui:define name="pageTitle">#{labels.formulari_title}</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<h:panelGrid columns="3">
+				<h:outputLabel for="nom" value="#{labels.name_label}" />
+				<h:inputText id="nom" value="#{formulariBean.formulari.nom}"
+					required="true" label="Nombre requerido" />
+				<h:message for="nom" />
+				<h:outputLabel for="llinatges" value="#{labels.surname_label}" />
+				<h:inputText id="llinatges"
+					value="#{formulariBean.formulari.llinatge}" required="true"
+					label="Apellido requerido" />
+				<h:message for="llinatges" />
+				<h:outputLabel for="telefon" value="#{labels.phone_label}" />
+				<h:inputText id="telefon" value="#{formulariBean.formulari.telefon}"
+					required="true" label="Telefono requerido">
+					<f:validateLongRange for="telefon" minimum="2" maximum="18"></f:validateLongRange>
+				</h:inputText>
+				<h:message for="telefon" />
+				<h:outputLabel for="email" value="#{labels.email_label}" />
+				<h:inputText id="email" value="#{formulariBean.formulari.email}"
+					required="true" label="Email requerido"
+					validator="#{formulariBean.validar}" />
+				<h:message for="email" />
+			</h:panelGrid>
+			<h:commandButton value="#{labels.button_afegeix_persona}"
+				actionListener="#{formulariBean.registrar()}" />
+
+			<h:dataTable value="#{formulariBean.lista}" var="form"
+				rendered="#{formulariBean.lista.size()>0 eq true}">
+				<f:facet name="header">
+					<h:outputLabel value="#{labels.name_label}" />
+				</f:facet>
+				<h:column>
+					<h:outputLabel value="#{form.nom}" />
+				</h:column>
+				<f:facet name="header">
+					<h:outputLabel value="#{labels.surname_label}" />
+				</f:facet>
+				<h:column>
+					<h:outputLabel value="#{form.llinatge}" />
+				</h:column>
+				<f:facet name="header">
+					<h:outputLabel value="#{labels.phone_label}" />
+				</f:facet>
+				<h:column>
+					<h:outputLabel value="#{form.telefon}" />
+				</h:column>
+				<f:facet name="header">
+					<h:outputLabel value="#{labels.email_label}" />
+				</f:facet>
+				<h:column>
+					<h:outputLabel value="#{form.email}" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+		<h:form>
+			<h:commandButton value="#{labels.button_afegeix_places}"
+				actionListener="#{formulariBean.afegirPlaza()}" />
+
+			<h:dataTable id="tablePlazas" value="#{formulariBean.listaPlazas}"
+				var="plaza"
+				rendered="#{formulariBean.listaPlazas.size() > 0 eq true}">
+				<f:facet name="header">
+					<h:outputLabel value="#{labels.centres_label}" />
+				</f:facet>
+				<h:column>
+					<h:outputLabel value="#{plaza.unitatDestinacio}" />
+				</h:column>
+				<f:facet name="header">
+					<h:outputLabel value="#{labels.ordre_label}" />
+				</f:facet>
+				<h:column>
+					<h:outputLabel value="#{plaza.ordrePreferencia}" />
+				</h:column>
+				<f:facet name="header">
+					<h:outputLabel value="#{labels.modificar_label}" />
+				</f:facet>
+				<h:column>
+					<h:selectOneMenu>
+						<f:selectItems value="#{formulariBean.numPlaza}" var="numero" />
+						<f:ajax event="change" listener="#{formulariBean.modificaOrdre}"
+							render="tablePlazas" execute="@this">
+							<f:param value="numero" name="numero" />
+							<f:param value="plaza" name="plaza" />
+						</f:ajax>
+					</h:selectOneMenu>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

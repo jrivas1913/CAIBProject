@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
+
+	<ui:define name="pageTitle">#{labels.formulari_title}</ui:define>
+
+	<ui:define name="content">
+
+		<h:form id="formulari">
+			<h:panelGrid id="formPersona" columns="3">
+				<p:outputLabel for="nom" value="#{labels.name_label}" />
+				<p:inputText id="nom" value="#{formulariBeanPrime.formulari.nom}"
+					required="true" />
+				<p:message for="nom" display="Nombre requerido" />
+				<p:outputLabel for="llinatges" value="#{labels.surname_label}" />
+				<p:inputText id="llinatges"
+					value="#{formulariBeanPrime.formulari.llinatge}" required="true" />
+				<p:message for="llinatges" display="Apellido requerido" />
+				<p:outputLabel for="telefon" value="#{labels.phone_label}" />
+				<p:inputText id="telefon"
+					value="#{formulariBeanPrime.formulari.telefon}" required="true">
+				</p:inputText>
+				<p:message for="telefon" display="Telefono requerido" />
+				<p:outputLabel for="email" value="#{labels.email_label}" />
+				<p:inputText id="email"
+					value="#{formulariBeanPrime.formulari.email}" required="true"
+					validator="#{formulariBeanPrime.validar}" />
+				<p:message for="email" display="Email requerido" />
+			</h:panelGrid>
+
+			<p:dataTable id="tablePlazas"
+				value="#{formulariBeanPrime.listaPlazas}" var="plaza"
+				rendered="#{formulariBeanPrime.listaPlazas.size()>0 eq true}">
+				<p:column headerText="#{labels.centres_label}" sortBy="#{plaza.unitatDestinacio}">
+					<h:outputLabel value="#{plaza.unitatDestinacio}" />
+				</p:column>
+				<p:column headerText="#{labels.ordre_label}">
+					<h:outputLabel value="#{plaza.ordrePreferencia}" />
+				</p:column>
+				<p:column headerText="#{labels.modificar_label}">
+					<p:selectOneMenu id="dropdown" value="#{plaza.ordrePreferencia}">
+						<f:selectItems value="#{formulariBeanPrime.numPlaza}" />
+						<p:ajax event="change" listener="#{formulariBeanPrime.validarOrdrePreferencia}" update="tablePlazas" process="tablePlazas" />
+					</p:selectOneMenu>
+				</p:column>
+			</p:dataTable>
+			
+			<p:dataTable id="tablePlazasPDF"
+				value="#{formulariBeanPrime.listaPlazas}" var="plaza"
+				rendered="false">
+				<p:column headerText="#{labels.centres_label}" sortBy="#{plaza.unitatDestinacio}">
+					<h:outputLabel value="#{plaza.unitatDestinacio}" />
+				</p:column>
+				<p:column headerText="#{labels.ordre_label}">
+					<h:outputLabel value="#{plaza.ordrePreferencia}" />
+				</p:column>
+			</p:dataTable>
+
+			<p:dataTable id="tablePersona" value="#{formulariBeanPrime.lista}"
+				var="form" rendered="#{formulariBeanPrime.lista.size()>0 eq true}">
+				<p:column headerText="#{labels.name_label}">
+					<h:outputLabel value="#{form.nom}" />
+				</p:column>
+				<p:column headerText="#{labels.surname_label}">
+					<h:outputLabel value="#{form.llinatge}" />
+				</p:column>
+				<p:column headerText="#{labels.phone_label}">
+					<h:outputLabel value="#{form.telefon}" />
+				</p:column>
+				<p:column headerText="#{labels.email_label}">
+					<h:outputLabel value="#{form.email}" />
+				</p:column>
+				<p:columns value="#{formulariBeanPrime.listaPlazas}" var="plaza">
+					<h:outputLabel value="#{plaza.ordrePreferencia}" />
+				</p:columns>
+			</p:dataTable>
+
+			<p:commandButton value="#{labels.button_afegeix_persona}"
+				actionListener="#{formulariBeanPrime.registrar()}"
+				update="formulari" />
+
+			<p:commandButton value="PDF" styleClass="p-mr-2 p-mb-2" ajax="false">
+				<p:dataExporter type="pdf" target="tablePlazasPDF" fileName="products" preProcessor="#{formulariBeanPrime.preProcessPDF}" postProcessor="#{formulariBeanPrime.postProcessPDF}"/>
+			</p:commandButton>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

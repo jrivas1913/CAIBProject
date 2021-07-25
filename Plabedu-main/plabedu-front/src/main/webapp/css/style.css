@@ -1,0 +1,161 @@
+@charset "ISO-8859-1";
+
+.logo {
+	width: 70px;
+	height: 70px;
+}
+
+header {
+	background-color: #10BED2;
+	margin-top: 60px;
+}
+
+header p {
+	color: white;
+}
+
+#tableDiv {
+	text-align: center;
+	margin-top: 50px;
+}
+
+#desa {
+	margin-right: 10px;
+}
+
+#contactSection {
+	margin-top: 50px;
+}
+
+#addressDiv {
+	margin-bottom: 20px;
+}
+/*---ADJUDICACIO----*/
+#subtitol {
+	font-size: 30px;
+}
+
+#divButton {
+	margin-bottom: 120px;
+}
+
+#textWarning {
+	margin-bottom: 30px;
+}
+
+#divPlacesContainer {
+	margin-bottom: 20px;
+}
+
+#divPlacesButtons {
+	padding-bottom: 15px;
+}
+
+#buttonPlaces {
+	margin-bottom: 20px;
+}
+
+#divPlacesButtons div a {
+	color: white;
+	font-size: 20px;
+	text-decoration: none;
+}
+#places_adjudicades, #places_no_adjudicades, #places_eliminades{
+	width:100%;
+}
+/*----CONVOCATORIES ---*/
+#subtitolPortal{
+	color: white;
+}
+#cardContainer{
+	padding: 20px;
+}
+#calendar{
+	height: 200px; 
+	width: 300px; 
+	display: block; 
+	margin-left: auto; 
+	margin-right: auto;
+}
+#cardBody{
+	text-align: justify;
+}
+.card-footer{
+	margin-top: 15px;
+}
+/*LlistesPlaces*/
+#cabeceraLlistes{
+	margin-top: 50px;
+	margin-bottom: 80px;
+	font-size: 40px;
+}
+#contentContainer{
+	margin-top: 40px; 
+	margin-bottom: 40px;
+}
+.card-body{
+	text-align: left;
+}
+.card-body h4{
+	text-align: center;
+}
+
+ /* Popup container */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 25px;
+  color: #000000;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #0b5ed7;;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #0b5ed7 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+} 
+/*---LOGEAR---*/
+#logearForm{
+	margin-top: 50px;
+}
+
